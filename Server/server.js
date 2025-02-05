@@ -11,10 +11,8 @@ app.use(cors()); // Allow requests from other origins
 app.use(express.json());
 
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-  console.log('Hello World!')
-})
+app.use(express.static('public'));
+
 
 app.post('/ask-gemini', async(req, res) => {
     const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
