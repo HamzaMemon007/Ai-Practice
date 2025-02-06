@@ -251,7 +251,7 @@
 
     <div class="container">
         <h1>Ask Me A Question?</h1>
-        <input type="text" id="userQuery" placeholder="Ask me anything..." oninput="clearWarnings()"
+        <input type="text" id="userQuery" placeholder="Ask me anything..."
             onkeydown="handleKeyPress(event)">
         <button class="btn" onclick="askGemini()">Send</button>
         <button class="btn" id="stopButton" onclick="stopResponse()" disabled>Stop</button>
@@ -332,12 +332,13 @@
             stopButton.disabled = true;
 
             try {
-                const res = await fetch("/api/ask-gemini", { // <-- Updated URL
+                const res = await fetch("/ask-gemini", { // <-- Updated URL
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ userPrompt: userQuery })
                 });
-
+                console.log(res);
+                
                 if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
 
                 const data = await res.json();
@@ -350,6 +351,7 @@
                 console.error("Fetch error:", error);
             }
         }
+
 
 
         function typeResponse(element, text, callback, i = 0) {
