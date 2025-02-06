@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -150,7 +151,7 @@
             border-radius: 12px;
             margin: 15px 0;
             position: relative;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease-in-out;
             opacity: 0;
             animation: fadeInUp 0.6s forwards;
@@ -162,6 +163,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             100% {
                 opacity: 1;
                 transform: translateY(0);
@@ -242,13 +244,15 @@
         }
     </style>
 </head>
+
 <body>
 
     <button id="themeSwitch">🌙</button> <!-- Theme Toggle Button -->
 
     <div class="container">
         <h1>Ask Me A Question?</h1>
-        <input type="text" id="userQuery" placeholder="Ask me anything..." oninput="clearWarnings()" onkeydown="handleKeyPress(event)">
+        <input type="text" id="userQuery" placeholder="Ask me anything..." oninput="clearWarnings()"
+            onkeydown="handleKeyPress(event)">
         <button class="btn" onclick="askGemini()">Send</button>
         <button class="btn" id="stopButton" onclick="stopResponse()" disabled>Stop</button>
         <div id="response"></div>
@@ -323,12 +327,12 @@
             }
 
             stopTyping = false;
-            responseDiv.innerText = "Thinking";
+            responseDiv.innerText = "Thinking...";
             responseDiv.classList.add("dot-animation");
             stopButton.disabled = true;
 
             try {
-                const res = await fetch("/ask-gemini", {
+                const res = await fetch("/api/ask-gemini", { // <-- Updated URL
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ userPrompt: userQuery })
@@ -336,15 +340,17 @@
 
                 if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
 
-                const data = await res.text();
+                const data = await res.json();
                 responseDiv.classList.remove("dot-animation");
                 responseDiv.innerText = "";
                 stopButton.disabled = false;
-                typeResponse(responseDiv, data, () => saveToHistory(userQuery, data));
+                typeResponse(responseDiv, data.response, () => saveToHistory(userQuery, data.response));
             } catch (error) {
                 responseDiv.innerText = "Error getting response!";
+                console.error("Fetch error:", error);
             }
         }
+
 
         function typeResponse(element, text, callback, i = 0) {
             if (stopTyping) return;
@@ -371,4 +377,5 @@
     </script>
 
 </body>
+
 </html>
