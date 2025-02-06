@@ -1,0 +1,292 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Body Styling */
+body {
+    background: var(--bg-gradient);
+    color: var(--text-color);
+    text-align: center;
+    padding: 20px;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* align-items: center; */
+    justify-content: center;
+    /* height: 100vh; */
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Light & Dark Theme Variables */
+:root {
+    --bg-gradient: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    --text-color: white;
+    --button-bg: #ff7eb3;
+    --button-hover-bg: #ff5e99;
+    --card-bg: rgba(255, 255, 255, 0.15);
+    --card-hover-bg: rgba(0, 0, 0, 0.2);
+    --delete-btn-bg: rgba(255, 0, 0, 0.7);
+    --delete-btn-hover-bg: rgba(255, 0, 0, 1);
+    --yellow: #ffcc00;
+    --white: #ffffff;
+}
+
+/* Light Theme Variables */
+[data-theme='light'] {
+    --bg-gradient: linear-gradient(to right, #f0f0f0, #d6d6d6, #a9a9a9);
+    --text-color: black;
+    --button-bg: #ff7eb3;
+    --button-hover-bg: #ff5e99;
+    --card-bg: rgba(0, 0, 0, 0.1);
+    --card-hover-bg: rgba(255, 255, 255, 0.1);
+    --delete-btn-bg: rgba(255, 0, 0, 0.8);
+    --delete-btn-hover-bg: rgba(255, 0, 0, 1);
+}
+
+/* Container Styling */
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    /* max-width: 500px; */
+    margin-bottom: 20px;
+}
+.main-container{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    justify-content: left;
+    
+}
+
+.container{
+    height: 100vh;
+    width: 100%;
+}
+.response-container{
+    width: 400px;
+
+}
+
+h1 {
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    transition: 0.3s;
+}
+
+input::placeholder {
+    color: var(--text-color);
+}
+
+input:focus {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.btn {
+    background: var(--button-bg);
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 5px;
+}
+/* Hide Button */
+.hide-btn {
+    background: gray;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    display: block;
+    margin-top: 10px;
+}
+
+.hide-btn:hover {
+    background: darkgray;
+}
+
+.btn:hover {
+    background: var(--button-hover-bg);
+}
+
+#stopButton {
+    background: #ff4d4d;
+}
+
+#stopButton:hover {
+    background: #e60000;
+}
+
+#clearAll {
+    background: var(--yellow);
+    color: black;
+}
+
+#clearAll:hover {
+    background: #ffb300;
+}
+/* Full Conversation Display */
+#fullConversation {
+    display: none;
+    background: var(--bg-gradient);
+    padding: 15px;
+    border-radius: 5px;
+    color: var(--text-color);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+
+#response {
+    text-align: left;
+    margin-top: 20px;
+    font-size: 18px;
+    white-space: pre-wrap;
+    min-height: 40px;
+    padding: 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: 0.3s;
+}
+
+
+/* Card Container Styles */
+.history {
+    margin-top: 20px;
+    max-width: 600px;
+    width: 90%;
+    text-align: left;
+}
+
+/* Card Styling */
+.card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    margin: 15px 0;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    animation: fadeInUp 0.6s forwards;
+}
+
+/* Animation for card appearance */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover Effects on Cards */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.card p {
+    margin-bottom: 12px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.card p strong {
+    color: var(--yellow);
+}
+
+.card .delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--delete-btn-bg);
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+.card .delete-btn:hover {
+    background: var(--delete-btn-hover-bg);
+}
+
+/* Text Shadow for Enhanced Visibility */
+.card p {
+    color: var(--white);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Switch Button Styling */
+#themeSwitch {
+    /* position: absolute; */
+    /* top: 20px; */
+    /* right: 20px; */
+    background-color: transparent;
+    border: 2px solid var(--text-color);
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: 0.3s ease;
+    align-items: end;
+}
+
+#themeSwitch:hover {
+    background-color: var(--button-bg);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    .main-container{
+        flex-direction: column;
+    }
+    .response-container{
+        width: 100%;
+    }
+
+    .container{
+        height: auto;
+        width: 100%;
+    }
+
+    .history {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .card p {
+        font-size: 14px;
+    }
+}
