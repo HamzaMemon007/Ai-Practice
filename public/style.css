@@ -145,14 +145,15 @@ input:focus {
 }
 /* Hide Button */
 .hide-btn {
-    background: gray;
-    color: white;
+    background: var(--card-bg);
+    color: var(--text-color);
     border: none;
     padding: 8px 12px;
-    border-radius: 3px;
+    border-radius: 5px;
     cursor: pointer;
     display: block;
     margin-top: 10px;
+    transition: 0.3s;
 }
 
 .response-ui{
@@ -161,7 +162,7 @@ input:focus {
 
 .hide-btn:hover {
     background: darkgray;
-    height: 80vh;
+    transform: scale(1.1);
 }
 
 .btn:hover {
