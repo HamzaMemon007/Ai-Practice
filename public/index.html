@@ -11,17 +11,21 @@
 
 <body>
     <div class="ui">
-        <div class="main-button">
-            <button id="themeSwitch">🌙</button> <!-- Theme Toggle Button -->
-        </div>
         <div class="main-container">
-            <div class="container">
-                <h1>Ask Me A Question?</h1>
-                <input type="text" id="userQuery" placeholder="Ask me anything..." onkeydown="handleKeyPress(event)">
-                <button class="btn" onclick="askGemini()">Send</button>
-                <button class="btn" id="stopButton" onclick="stopResponse()" disabled>Stop</button>
-                <div id="response"></div>
+            <div class="response-ui">
+                <div class="main-button">
+                    <button id="themeSwitch">🌙</button> <!-- Theme Toggle Button -->
+                </div>
+                <div class="container">
+                    <h1>Ask Me A Question?</h1>
+                    <input type="text" id="userQuery" placeholder="Ask me anything..."
+                        onkeydown="handleKeyPress(event)">
+                    <button class="btn" onclick="askGemini()">Send</button>
+                    <button class="btn" id="stopButton" onclick="toggleTyping()">Pause</button>
+                    <div id="response"></div>
+                </div>
             </div>
+            <!-- <div class="vertical-line"></div> -->
             <div class="response-container">
                 <div class="history">
                     <h2>Previous Responses</h2>
