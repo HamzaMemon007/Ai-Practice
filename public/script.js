@@ -107,7 +107,7 @@ async function askGemini() {
     }
 
     stopTyping = false;
-    responseDiv.innerText = "Thinking...";
+    responseDiv.innerText = "Thinking";
     responseDiv.classList.add("dot-animation");
     stopButton.disabled = true;
 
