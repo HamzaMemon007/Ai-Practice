@@ -156,7 +156,7 @@ function typeResponse(element, text, callback, i = 0) {
     if (i < text.length) {
         element.innerHTML += text[i];
         currentTypingIndex = i + 1;
-        typingTimer = setTimeout(() => typeResponse(element, text, callback, i + 1), 1);
+        typingTimer = setTimeout(() => typeResponse(element, text, callback, i + 1), 15);
     } else {
         // When finished, disable the stop/resume button and execute the callback
         document.getElementById("stopButton").disabled = true;
