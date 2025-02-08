@@ -11,7 +11,6 @@ body {
     background: var(--bg-gradient);
     color: var(--text-color);
     text-align: center;
-    padding: 20px;
     /* display: flex; */
     /* flex-direction: column; */
     /* align-items: center; */
@@ -33,6 +32,8 @@ body {
     --pause-btn: rgba(255, 0, 0, 0.7);
     --yellow: #ffcc00;
     --white: #ffffff;
+    --scroll-bar: rgba(255, 255, 255, 0.697);
+    --transparent: transparent;
 }
 
 /* Light Theme Variables */
@@ -46,6 +47,7 @@ body {
     --card-hover-bg: rgba(255, 255, 255, 0.1);
     --delete-btn-bg: rgba(0, 0, 0, 0.8);
     --delete-btn-hover-bg: rgba(255, 0, 0, 1);
+    --scroll-bar: rgba(193, 193, 193, 0.632);
 }
 
 /* Container Styling */
@@ -224,6 +226,7 @@ input:focus {
 }
 .ui{
     max-width: auto;
+    padding: 10px 10px 0 10px;
 }
 
 /* Card Styling */
@@ -242,7 +245,12 @@ input:focus {
     max-height: 78vh;
     overflow-y: auto;
     padding: 5px;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--scroll-bar) var(--transparent);
+    scrollbar-arrow-color: var(--transparent);
 }
+
 
 /* Animation for card appearance */
 @keyframes fadeInUp {
